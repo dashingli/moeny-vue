@@ -1,36 +1,35 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Money from '@/views/Money.vue';
-import Labels from '@/views/Labels.vue';
-import Statistics from '@/views/Statistics.vue';
-import NotFound from '@/views/NotFound.vue';
-import EditLabel from '@/views/EditLabel.vue';
-
+import Money from '@/view/Money.vue'
+import Label  from '@/view/Label.vue'
+import Statistics  from '@/view/Statistics.vue'
+import NotFound  from '@/view/NotFound.vue'
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
-    redirect: '/money'
+    path:'/',
+    name:'root',
+    redirect:'/money'
   },
   {
-    path: '/money',
-    component: Money
+    path:'/money',
+    name:'money',
+    component:Money
   },
   {
-    path: '/labels',
-    component: Labels
+    path:'/label',
+    name:'label',
+    component: Label
   },
   {
-    path: '/statistics',
+    path:'/statistics',
+    name:'statistics',
     component: Statistics
   },
   {
-    path: '/labels/edit/:id',
-    component: EditLabel
-  },
-  {
-    path: '*',
+    path:'*',
+    name:'notFound',
     component: NotFound
   }
 ];
