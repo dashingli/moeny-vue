@@ -31,31 +31,31 @@ export default {
 <style scoped lang="scss">
 
 .wrapper{
-    min-height: 100vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
   main{
+    width: 100%;
+    display: flex;
     flex:1;
   }
   footer{
-    min-width: 100vw;
+    width: 100vw;
     display: flex;
-    background-color: #252a32;
+    background: linear-gradient(191.7deg, rgba(231, 222, 255, 0.81) 0.5%, rgba(231, 237, 255, 0.37) 100%);
   }
   .link-item{
     display: flex;
-    padding-bottom: 10px;
-    padding-top: 10px;
     flex-direction: column;
     width: 33.3333%;
     align-items: center;
     text-decoration: none;
-    color: #f1f5f8;
+    color: #838EC9;
   }
   .link-item-active{
-    background-color: #f1f5f8;
-    color: red;
+    color:#2D39A0;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   }
 </style>
