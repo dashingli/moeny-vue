@@ -4,12 +4,18 @@
   <Add></Add>
   <Remark></Remark>
   <Tab></Tab>
-  <Result></Result>
-  <counter></counter>
+  <Result v-bind:value="clickNumber"></Result>
+  <counter v-on:clickNumber="showValue"
+           v-on:clickRemove = "removeValue"
+           v-on:clickDelete="deleteValue"
+           v-on:clickAdd = 'addValue'
+  >
+
+  </counter>
 </div>
 </template>
 
-<script lang="ts">
+<script lang="js">
 
 import Title from "@/components/money/Title.vue";
 import Add from "@/components/money/Add.vue";
@@ -26,6 +32,40 @@ export default {
     Tab,
     Counter,
     Result
+  },
+  data(){
+    return {clickNumber : '0'}
+  },
+  methods:{
+    showValue:function (dataValue){
+      console.log(dataValue);
+      if(this.clickNumber.length > 16){
+        return;
+      }
+      if(this.clickNumber === '0' && dataValue !== '.'){
+        this.clickNumber = '';
+      }
+      if(this.clickNumber.includes('.') && dataValue === '.'){
+        return;
+      }
+      this.clickNumber += dataValue;
+
+    },
+    removeValue:function (dataValue){
+      this.clickNumber = '0';
+    },
+    deleteValue:function (dataValue){
+      let numberLength = this.clickNumber.length;
+      if(numberLength === 1){
+        this.clickNumber = '0'
+      }else{
+        this.clickNumber = this.clickNumber.substring(0,numberLength-1);
+      }
+
+    },
+    addValue:function (dataValue){
+
+    }
   }
 };
 </script>

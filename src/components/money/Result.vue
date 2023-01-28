@@ -1,12 +1,13 @@
 <template>
   <div class="results-wrapper">
-    <span>100</span>
+    <span>{{value}}</span>
   </div>
 </template>
 
-<script lang="ts">
+<script lang="js">
 export default {
-  name: "Result"
+  name: "Result",
+  props:['value']
 };
 </script>
 

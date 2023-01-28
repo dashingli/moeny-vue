@@ -1,21 +1,21 @@
 <template>
   <div class="counter-wrapper">
-    <button class="number-1 number-color">1</button>
-    <button class="number-2 number-color">2</button>
-    <button class="number-3 number-color">3</button>
-    <button class="add ammm-color">+</button>
-    <button class="delete dee-color">删除</button>
-    <button class="number-4 number-color">4</button>
-    <button class="number-5 number-color">5</button>
-    <button class="number-6 number-color">6</button>
+    <button class="number-1 number-color" @click="inputContent">1</button>
+    <button class="number-2 number-color" @click="inputContent">2</button>
+    <button class="number-3 number-color" @click="inputContent">3</button>
+    <button class="add ammm-color" @click="addContent">+</button>
+    <button class="delete dee-color" @click="deleteNumber">删除</button>
+    <button class="number-4 number-color" @click="inputContent">4</button>
+    <button class="number-5 number-color" @click="inputContent">5</button>
+    <button class="number-6 number-color" @click="inputContent">6</button>
     <button class="minus ammm-color">-</button>
-    <button class="empty dee-color">清空</button>
-    <button class="number-7 number-color">7</button>
-    <button class="number-8 number-color">8</button>
-    <button class="number-9 number-color">9</button>
+    <button class="empty dee-color" @click="remove">清空</button>
+    <button class="number-7 number-color" @click="inputContent">7</button>
+    <button class="number-8 number-color" @click="inputContent">8</button>
+    <button class="number-9 number-color" @click="inputContent">9</button>
     <button class="mul ammm-color">*</button>
-    <button class="number-0 number-color">0</button>
-    <button class="number-dot number-color">.</button>
+    <button class="number-0 number-color" @click="inputContent">0</button>
+    <button class="number-dot number-color" @click="inputContent">.</button>
     <button class="number-per number-color">%</button>
     <button class="modulo ammm-color">/</button>
     <button class="equal dee-color">
@@ -24,9 +24,24 @@
   </div>
 </template>
 
-<script lang="ts">
+<script lang="js">
 export default {
   name: "Counter",
+  methods:{
+    inputContent(event){
+      let content = event.target.innerText;
+      this.$emit('clickNumber',content)
+    },
+    remove(){
+      this.$emit('clickRemove','清空数据')
+    },
+    deleteNumber(){
+      this.$emit('clickDelete','删除一个数据')
+    },
+    addContent(){
+      this.$emit('clickContent','加法')
+    }
+  }
 };
 </script>
 
