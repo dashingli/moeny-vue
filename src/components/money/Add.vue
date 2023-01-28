@@ -57,6 +57,9 @@ export default {
     position: absolute;
     bottom: 10px;
     width: 100%;
+    ::-webkit-scrollbar {
+      display: none; /* Chrome Safari */
+    }
     .button-wrapper{
       display: flex;
       justify-content: center;
@@ -69,13 +72,17 @@ export default {
         flex-shrink: 0;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
         border-style: none;
         border-radius: 10px;
         background: #FFFFFF;
         color:#2D39A0;
         width: 56px;
-        height: 65px;
+        height: 56px;
         box-shadow: -2px -1px 3px 0px #4A72D740 inset;
+        span{
+          padding-bottom: 3px;
+        }
       }
     }
     .add-wrapper{
@@ -90,7 +97,7 @@ export default {
         justify-content: center;
         font-size:10px;
         width: 56px;
-        height: 65px;
+        height: 56px;
         color: white;
         border-radius: 10px;
         outline: 1px white dashed;
