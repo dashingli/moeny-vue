@@ -1,13 +1,23 @@
 <template>
   <div class="remark-wrapper">
     <label for="remark">备注:</label>
-    <input type="text" placeholder="在此添加备注" id="remark">
+    <input type="text" @input="onInput"  placeholder="在此添加备注" id="remark">
   </div>
 </template>
 
-<script lang="ts">
+<script lang="js">
 export default {
-  name: "Remark"
+  name: "Remark",
+  data(){
+    return{
+      value : ''
+    }
+  },
+  methods:{
+    onInput(event){
+      this.value = event.target.value
+    }
+  }
 };
 </script>
 

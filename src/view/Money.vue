@@ -8,9 +8,7 @@
   <counter v-on:clickNumber="showValue"
            v-on:clickRemove = "removeValue"
            v-on:clickDelete="deleteValue"
-           v-on:clickAdd = 'addValue'
   >
-
   </counter>
 </div>
 </template>
@@ -34,7 +32,12 @@ export default {
     Result
   },
   data(){
-    return {clickNumber : '0'}
+    return {
+      clickNumber : '0',
+      numArray : [],
+      add:false,
+      subtract:false
+    }
   },
   methods:{
     showValue:function (dataValue){
@@ -51,10 +54,10 @@ export default {
       this.clickNumber += dataValue;
 
     },
-    removeValue:function (dataValue){
+    removeValue:function (){
       this.clickNumber = '0';
     },
-    deleteValue:function (dataValue){
+    deleteValue:function (){
       let numberLength = this.clickNumber.length;
       if(numberLength === 1){
         this.clickNumber = '0'
@@ -63,9 +66,6 @@ export default {
       }
 
     },
-    addValue:function (dataValue){
-
-    }
   }
 };
 </script>
