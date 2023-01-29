@@ -35,6 +35,9 @@ export default {
     },
     counterNumber(){
       this.$emit('clickCounter','确定记账结果')
+
+      const okEvent = new CustomEvent("onCounterOk")
+      document.dispatchEvent(okEvent)
     }
   }
 };
