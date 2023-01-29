@@ -3,29 +3,13 @@
     <img src="@/assets/img/homeImg.png" alt="homeImg">
     <div class="addButton-wrapper">
       <div class="button-wrapper">
-        <button>
-          <Icon icon-name="clothes"></Icon>
-          <span>衣</span>
-        </button>
-        <button>
-          <Icon icon-name="food"></Icon>
-          <span>食</span>
-        </button>
-        <button>
-          <Icon icon-name="home"></Icon>
-          <span>住</span>
-        </button>
-        <button>
-          <Icon icon-name="trip"></Icon>
-          <span>行</span>
-        </button>
-        <button>
-          <Icon icon-name="trip"></Icon>
-          <span>行</span>
+        <button v-for="tag in tags" :key="tag.key" :class="{selected:selectedTags.indexOf(tag.key)>=0}" @click="onToggle(tag.key)">
+          <Icon :icon-name="tag.iconName"></Icon>
+          <span>{{tag.content}}</span>
         </button>
       </div>
       <div class="add-wrapper">
-        <button class="add-button">
+        <button class="add-button" @click="addTag">
           <Icon icon-name="add"></Icon>
         </button>
       </div>
@@ -34,12 +18,47 @@
   </div>
 </template>
 
-<script lang="ts">
+<script lang="js">
 import Icon from "@/components/Icon.vue";
 export default {
   name: "Add",
   components:{
     Icon
+  },
+  props:['tags'],
+  data(){
+    return {
+      selectedTags : []
+    }
+  },
+  watch:{
+    selectedTags(value){
+      this.$emit('update:value', value);
+    }
+  },
+  methods:{
+    onToggle(key){
+      let index = this.selectedTags.indexOf(key)
+      if(index >= 0){
+        this.selectedTags.splice(index,1);
+      }else{
+        this.selectedTags.push(key);
+      }
+
+    },
+    addTag(){
+      const content = window.prompt('请输入标签名称');
+      if(content === null || content === ""){
+        return;
+      }
+      const key = this.tags[this.tags.length-1].key + 1;
+      const tag = {
+        iconName : "custom",
+        content:content,
+        key:key
+      }
+      this.$emit('update:tag', tag);
+    }
   }
 };
 </script>
@@ -67,6 +86,10 @@ export default {
       width:276px;
       overflow: scroll;
       flex-wrap: nowrap;
+      .selected{
+        background: #8256FF;
+        color:#FFFFFF;
+      }
       button{
         display: flex;
         flex-shrink: 0;

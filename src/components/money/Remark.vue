@@ -13,6 +13,11 @@ export default {
       value : ''
     }
   },
+  watch:{
+    value(value){
+      this.$emit('update:remark',value);
+    }
+  },
   methods:{
     onInput(event){
       this.value = event.target.value

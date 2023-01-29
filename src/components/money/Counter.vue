@@ -34,7 +34,7 @@ export default {
       this.$emit('clickDelete','删除一个数据')
     },
     counterNumber(){
-      this.$emit('clickCounter','计算结果')
+      this.$emit('clickCounter','确定记账结果')
     }
   }
 };

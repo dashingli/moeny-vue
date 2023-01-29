@@ -1,15 +1,17 @@
 <template>
 <div class="money-wrapper">
   <Title></Title>
-  <Add></Add>
-  <Remark></Remark>
-  <Tab></Tab>
+  <Add :tags="tagsArray" v-on:update:tag="addTag" v-on:update:value="getSelectedTags"></Add>
+  <Remark v-on:update:remark="getRemark"></Remark>
+  <Tab v-on:update:type="getType"></Tab>
   <Result v-bind:value="clickNumber"></Result>
   <counter v-on:clickNumber="showValue"
            v-on:clickRemove = "removeValue"
            v-on:clickDelete="deleteValue"
+           v-on:clickCounter="getResult"
   >
   </counter>
+  {{record}}
 </div>
 </template>
 
@@ -36,12 +38,23 @@ export default {
       clickNumber : '0',
       numArray : [],
       add:false,
-      subtract:false
+      subtract:false,
+      tagsArray:[
+          {iconName:"clothes",content:"衣",key:1},
+          {iconName:"food",content:"食",key:2},
+          {iconName:"home",content:"住",key:3},
+          {iconName:"trip",content:"行",key:4},
+      ],
+      record:{
+        selected:[],
+        remark:'',
+        type:'-',
+        result:0
+      }
     }
   },
   methods:{
     showValue:function (dataValue){
-      console.log(dataValue);
       if(this.clickNumber.length > 16){
         return;
       }
@@ -64,8 +77,22 @@ export default {
       }else{
         this.clickNumber = this.clickNumber.substring(0,numberLength-1);
       }
-
     },
+    addTag:function (dataValues){
+      this.tagsArray.push(dataValues);
+    },
+    getSelectedTags(value){
+      this.record.selected = value;
+    },
+    getRemark(value){
+      this.record.remark = value;
+    },
+    getType(value){
+      this.record.type = value;
+    },
+    getResult(){
+      this.record.result = parseFloat(this.clickNumber);
+    }
   }
 };
 </script>

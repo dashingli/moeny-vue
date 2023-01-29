@@ -44,7 +44,7 @@ export default {
   footer{
     width: 100vw;
     display: flex;
-    background: linear-gradient(191.7deg, rgba(231, 222, 255, 0.81) 0.5%, rgba(231, 237, 255, 0.37) 100%);
+    background:linear-gradient(191.7deg, #B0C6FF 0.5%, #CCBFF2 100%);
   }
   .link-item{
     display: flex;
