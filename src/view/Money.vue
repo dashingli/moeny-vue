@@ -1,7 +1,7 @@
 <template>
 <div class="money-wrapper">
   <Title></Title>
-  <Add :tags="tagsArray" v-on:update:tag="addTag" v-on:update:value="getSelectedTags"></Add>
+  <Add :tags="tagsArray" v-on:update:tag="addTag" :selected-tags="selectedTags"></Add>
   <Remark v-on:update:remark="getRemark"></Remark>
   <Tab v-on:update:type="getType"></Tab>
   <Result v-bind:value="clickNumber"></Result>
@@ -39,6 +39,7 @@ export default {
       numArray : [],
       add:false,
       subtract:false,
+      selectedTags:[],
       tagsArray:[
           {iconName:"clothes",content:"衣",key:1},
           {iconName:"food",content:"食",key:2},
@@ -50,7 +51,8 @@ export default {
         remark:'',
         type:'-',
         result:0
-      }
+      },
+      recordList: JSON.parse(window.localStorage.getItem('recordList'))||[],
     }
   },
   methods:{
@@ -92,6 +94,17 @@ export default {
     },
     getResult(){
       this.record.result = parseFloat(this.clickNumber);
+      this.record.selected = this.selectedTags;
+      if(this.clickNumber[this.clickNumber.length-1] === '.'){
+        window.alert("请输入正确数字");
+        return;
+      }
+      const record2 = JSON.parse(JSON.stringify(this.record));
+      this.recordList.push(record2);
+      window.localStorage.setItem('recordList', JSON.stringify(this.recordList))
+
+      this.clickNumber = '0';
+      this.selectedTags = [];
     }
   }
 };

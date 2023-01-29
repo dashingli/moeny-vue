@@ -25,25 +25,18 @@ export default {
   components:{
     Icon
   },
-  props:['tags'],
-  data(){
-    return {
-      selectedTags : []
-    }
-  },
-  watch:{
-    selectedTags(value){
-      this.$emit('update:value', value);
-    }
-  },
+  props:['tags','selectedTags'],
   methods:{
     onToggle(key){
+
       let index = this.selectedTags.indexOf(key)
       if(index >= 0){
         this.selectedTags.splice(index,1);
       }else{
         this.selectedTags.push(key);
       }
+      console.log(this.selectedTags)
+
 
     },
     addTag(){
