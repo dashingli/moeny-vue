@@ -1,7 +1,7 @@
 <template>
   <div class="remark-wrapper">
     <label for="remark">备注:</label>
-    <input type="text" @input="onInput"  placeholder="在此添加备注" id="remark">
+    <input v-model="value" type="text" @input="onInput"  placeholder="在此添加备注" id="remark">
   </div>
 </template>
 
@@ -13,14 +13,16 @@ export default {
       value : ''
     }
   },
-  watch:{
-    value(value){
-      this.$emit('update:remark',value);
-    }
+  mounted() {
+    document.addEventListener('onCounterOk', () => this.resetRemark())
   },
   methods:{
     onInput(event){
       this.value = event.target.value
+      this.$emit('update:remark', this.value);
+    },
+    resetRemark() {
+      this.value = ''
     }
   }
 };
